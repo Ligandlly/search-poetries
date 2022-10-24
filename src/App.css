@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.poetry {
+  width: 23.33vw;
+  height: 33.9vw;
+  margin: 5vw;
+}

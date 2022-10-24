@@ -1,11 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Poetry from "./components/poetry";
+import fakePoetry from "./fakePoetry";
+import PotriesList from "./components/potries-list";
+import { FakeSearch } from "./components/search";
+import PoetryData from "./components/poetry-data";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
+interface AppState {
+  poetries?: PoetryData[];
+}
+
+class App extends Component<{}, AppState> {
+  handleClick = () => {
+    this.setState({ poetries: fakePoetry });
+  };
+
+  constructor(props: {}) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const { poetries } = this.state;
+    return (
+      <div className="App">
+        {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -18,9 +38,16 @@ function App() {
         >
           Learn React
         </a>
-      </header>
-    </div>
-  );
+      </header> */}
+        <FakeSearch handleClick={this.handleClick}></FakeSearch>
+        {!!poetries ? (
+          <PotriesList poetries={poetries} />
+        ) : (
+          <p>Nothing to display.</p>
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
