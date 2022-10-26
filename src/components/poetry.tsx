@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  Avatar,
   Collapse,
   ListItemButton,
   ListItemText,
@@ -7,18 +8,20 @@ import {
 } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import PoetryData from "./poetry-data";
+import PoetryData from "../utils/poetry-data";
 
 export interface PoetryProps {
   poetryData: PoetryData;
   style?: any;
   className?: string;
   divider?: boolean;
+  id: number;
+  onOpen: (id: number) => void;
+  open: boolean;
 }
 
 interface PoetryState {
   splitedPoetry: string[];
-  open: boolean;
 }
 
 export default class Poetry extends Component<PoetryProps, PoetryState> {
@@ -26,7 +29,6 @@ export default class Poetry extends Component<PoetryProps, PoetryState> {
     super(props);
     this.state = {
       splitedPoetry: this.splitPoetry(),
-      open: false,
     };
   }
 
@@ -43,8 +45,8 @@ export default class Poetry extends Component<PoetryProps, PoetryState> {
   };
 
   handleClick = () => {
-    const { open } = this.state;
-    this.setState({ open: !open });
+    const { id, onOpen } = this.props;
+    onOpen(id);
   };
 
   completePoetry = () => {
@@ -65,8 +67,7 @@ export default class Poetry extends Component<PoetryProps, PoetryState> {
 
   render() {
     const { title, author } = this.props.poetryData;
-    const { divider } = this.props;
-    const { open } = this.state;
+    const { divider, id, open } = this.props;
 
     const highLight = this.getHighlight().map((v) => (
       <Typography variant="body1">{v}</Typography>
@@ -74,7 +75,12 @@ export default class Poetry extends Component<PoetryProps, PoetryState> {
 
     return (
       <React.Fragment>
-        <ListItemButton onClick={this.handleClick} divider={divider}>
+        <ListItemButton
+          onClick={this.handleClick}
+          divider={divider}
+          alignItems="flex-start"
+        >
+          <Avatar sx={{ margin: "0.5rem 1rem 0 0" }}>{id + 1}</Avatar>
           <ListItemText
             primary={highLight}
             secondary={`《${title}》 ` + author}

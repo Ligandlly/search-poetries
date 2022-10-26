@@ -9,12 +9,24 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { grey } from "@mui/material/colors";
+
+const theme = createTheme({
+  palette: {
+    primary: grey,
+  },
+});
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

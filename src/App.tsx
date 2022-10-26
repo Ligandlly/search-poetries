@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Poetry from "./components/poetry";
-import fakePoetry from "./fakePoetry";
+import fakePoetry from "./utils/fakePoetry";
 import PotriesList from "./components/potries-list";
-import { FakeSearch } from "./components/search";
-import PoetryData from "./components/poetry-data";
-
+import Search from "./components/search";
+import PoetryData from "./utils/poetry-data";
+import { createTheme, useMediaQuery } from "@mui/material";
+import Nav from "./components/nav";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/home";
+import Result from "./components/result";
 interface AppState {
+  imgURL?: string;
   poetries?: PoetryData[];
 }
 
@@ -21,8 +26,13 @@ class App extends Component<{}, AppState> {
     this.state = {};
   }
 
+  handleSearch = (imgURL: string, poetries: PoetryData[]) => {
+    this.setState({ imgURL, poetries });
+    window.location.replace("/search");
+  };
+
   render() {
-    const { poetries } = this.state;
+    const { poetries, imgURL } = this.state;
     return (
       <div className="App">
         {/* <header className="App-header">
@@ -39,12 +49,16 @@ class App extends Component<{}, AppState> {
           Learn React
         </a>
       </header> */}
-        <FakeSearch handleClick={this.handleClick}></FakeSearch>
-        {!!poetries ? (
-          <PotriesList poetries={poetries} />
-        ) : (
-          <p>Nothing to display.</p>
-        )}
+        <Nav />
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Home onSearch={this.handleSearch} />} />
+            <Route
+              path="search"
+              element={<Result imgURL={""} poetries={fakePoetry} />}
+            />
+          </Routes>
+        </BrowserRouter>
       </div>
     );
   }
