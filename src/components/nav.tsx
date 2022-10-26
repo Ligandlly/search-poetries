@@ -6,7 +6,7 @@ export default class nav extends Component {
     return (
       <React.Fragment>
         <Navbar className="p-3" fixed="top" bg="light">
-          <Navbar.Brand href="#home">Fancy Name</Navbar.Brand>
+          <Navbar.Brand href="/">Fancy Name</Navbar.Brand>
           <Nav>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>

@@ -7,27 +7,25 @@ export interface PotriesListProps {
   poetries: PoetryData[];
   openID: number;
   onOpen: (id: number) => void;
+  width: string;
+  border?: boolean;
 }
 
 export default class PotriesList extends Component<PotriesListProps> {
-  constructor(props: PotriesListProps) {
-    super(props);
-  }
-
   getPoetry = (poetryData: PoetryData) => {};
 
   handleOpen = (id: number) => this.props.onOpen(id);
 
   render() {
-    const { poetries, openID } = this.props;
+    const { poetries, openID, width, border } = this.props;
     return (
       <List
-        className="m-5"
+        className={!!border ? "mt-5" : ""}
         sx={{
           border: 1,
-          width: "40vw",
+          width,
           borderRadius: 3,
-          borderColor: "lightgray",
+          borderColor: !!border ? "lightgray" : "transparent",
           background: "white",
         }}
       >

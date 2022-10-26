@@ -9,15 +9,14 @@ export interface SearchProps {
 }
 
 export default class Search extends Component<SearchProps> {
-  constructor(props: SearchProps) {
-    super(props);
-  }
-
   handleSearch = () => {
+    const { example } = this.props;
     /// Some operations
-    const imgURL = "https://wallpaperset.com/w/full/0/d/f/458260.jpg";
-    const poetries = fakePoetry;
-    this.props.onSearch(imgURL, poetries);
+    if (!!example) {
+      const imgURL = "https://wallpaperset.com/w/full/0/d/f/458260.jpg";
+      const poetries = fakePoetry;
+      this.props.onSearch(imgURL, poetries);
+    }
   };
 
   render() {
@@ -27,14 +26,19 @@ export default class Search extends Component<SearchProps> {
         className="mx-4"
         variant={example ? "outlined" : "contained"}
         component="label"
+        onClick={!!example ? this.handleSearch : undefined}
       >
         {!!example ? "Example" : "Upload"}
-        <input
-          hidden
-          accept="image/*"
-          type="file"
-          onChange={this.handleSearch}
-        />
+        {!!example ? (
+          <div></div>
+        ) : (
+          <input
+            hidden
+            accept="image/*"
+            type="file"
+            onChange={this.handleSearch}
+          />
+        )}
       </Button>
     );
   }
