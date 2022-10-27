@@ -16,6 +16,7 @@ interface ImgCardProps {
   openID: number;
   cardSize: string;
   imgHeight: string;
+  textHeight?: string;
 }
 
 export default class ImgCard extends Component<ImgCardProps> {
@@ -26,7 +27,8 @@ export default class ImgCard extends Component<ImgCardProps> {
   }
 
   render() {
-    const { imgURL, poetries, openID, imgHeight, cardSize } = this.props;
+    const { imgURL, poetries, openID, imgHeight, cardSize, textHeight } =
+      this.props;
 
     let highlight: string[] | undefined;
     if (!!poetries && openID !== -1) {
@@ -52,7 +54,7 @@ export default class ImgCard extends Component<ImgCardProps> {
           }
           sx={{ height: imgHeight }}
         />
-        <CardContent sx={{ height: "4rem" }}>
+        <CardContent sx={{ height: !!textHeight ? textHeight : "4rem" }}>
           {!!highlight ? (
             highlight
               .map((v) => <Typography variant="body1">{v}</Typography>)

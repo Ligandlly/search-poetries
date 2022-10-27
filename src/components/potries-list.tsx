@@ -9,6 +9,7 @@ export interface PotriesListProps {
   onOpen: (id: number) => void;
   width: string;
   border?: boolean;
+  mobile?: boolean;
 }
 
 export default class PotriesList extends Component<PotriesListProps> {
@@ -17,7 +18,7 @@ export default class PotriesList extends Component<PotriesListProps> {
   handleOpen = (id: number) => this.props.onOpen(id);
 
   render() {
-    const { poetries, openID, width, border } = this.props;
+    const { poetries, openID, width, border, mobile } = this.props;
     return (
       <List
         className={!!border ? "mt-5" : ""}
@@ -35,7 +36,7 @@ export default class PotriesList extends Component<PotriesListProps> {
             key={i}
             id={i}
             onOpen={this.handleOpen}
-            open={i === openID}
+            open={!!mobile ? false : i === openID}
           />
         ))}
       </List>

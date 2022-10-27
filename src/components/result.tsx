@@ -4,6 +4,7 @@ import PoetryData from "../utils/poetry-data";
 import ImgCard from "./img-card";
 import PoetriesList from "./potries-list";
 import MediaQuery from "react-responsive";
+import Slides from "./slides";
 
 interface ResultProps {
   imgURL: string;
@@ -21,6 +22,10 @@ export default class Result extends Component<ResultProps, ResultState> {
   }
 
   handleOpen = (id: number) => this.setState({ openID: id });
+
+  handleMobileOpen = (id: number) => {
+    window.location.replace(`search/mobile/${id}`);
+  };
 
   render() {
     const { openID } = this.state;
@@ -64,9 +69,11 @@ export default class Result extends Component<ResultProps, ResultState> {
             <PoetriesList
               poetries={fakePoetry}
               openID={openID}
-              onOpen={this.handleOpen}
+              onOpen={this.handleMobileOpen}
               width="100vw"
+              mobile
             />
+            {/* <Slides poetries={fakePoetry} imgURL={imgURL} /> */}
           </div>
         </MediaQuery>
       </React.Fragment>

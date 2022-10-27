@@ -8,12 +8,13 @@ import Search from "./components/search";
 import PoetryData from "./utils/poetry-data";
 import { createTheme, useMediaQuery } from "@mui/material";
 import Nav from "./components/nav";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import Home from "./components/home";
 import Result from "./components/result";
+import Mobile from "./components/mobile";
 interface AppState {
-  imgURL?: string;
-  poetries?: PoetryData[];
+  imgURL: string;
+  poetries: PoetryData[];
 }
 
 class App extends Component<{}, AppState> {
@@ -23,7 +24,10 @@ class App extends Component<{}, AppState> {
 
   constructor(props: {}) {
     super(props);
-    this.state = {};
+    this.state = {
+      imgURL: "",
+      poetries: fakePoetry,
+    };
   }
 
   handleSearch = (imgURL: string, poetries: PoetryData[]) => {
@@ -55,7 +59,11 @@ class App extends Component<{}, AppState> {
             <Route index element={<Home onSearch={this.handleSearch} />} />
             <Route
               path="search"
-              element={<Result imgURL={""} poetries={fakePoetry} />}
+              element={<Result imgURL={imgURL} poetries={poetries} />}
+            />
+            <Route
+              path="search/mobile/:id"
+              element={<Mobile imgURL={imgURL} poetries={poetries} />}
             />
           </Routes>
         </BrowserRouter>

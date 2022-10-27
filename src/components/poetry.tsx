@@ -54,10 +54,14 @@ export default class Poetry extends Component<PoetryProps, PoetryState> {
     const { start, length } = this.props.poetryData;
     return splitedPoetry.map((v, index) => {
       if (index >= start && index < start + length) {
-        return <Typography variant="body1">{v}</Typography>;
+        return (
+          <Typography variant="body1" key={index}>
+            {v}
+          </Typography>
+        );
       } else {
         return (
-          <Typography variant="body1" sx={{ color: "lightgray" }}>
+          <Typography variant="body1" sx={{ color: "lightgray" }} key={index}>
             {v}
           </Typography>
         );
@@ -69,8 +73,10 @@ export default class Poetry extends Component<PoetryProps, PoetryState> {
     const { title, author } = this.props.poetryData;
     const { divider, id, open } = this.props;
 
-    const highLight = this.getHighlight().map((v) => (
-      <Typography variant="body1">{v}</Typography>
+    const highLight = this.getHighlight().map((v, i) => (
+      <Typography variant="body1" key={i}>
+        {v}
+      </Typography>
     ));
 
     return (
