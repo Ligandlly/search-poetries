@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## 任务
+
+-[x] 主页，支持用户上传图片和使用示例
+-[x] 显示搜索结果, 包括题目、作者、整首诗
+-[x] 显示用户上传的图片
+-[x] 适配手机
+-[ ] 和后端交互 
+-[ ] 中英双语
+-[ ] about 页面 
+-[ ] 小程序 
+
 ## Available Scripts
 
 In the project directory, you can run:
