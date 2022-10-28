@@ -13,7 +13,7 @@ export interface PotriesListProps {
 }
 
 export default class PotriesList extends Component<PotriesListProps> {
-  getPoetry = (poetryData: PoetryData) => {};
+  // getPoetry = (poetryData: PoetryData) => {};
 
   handleOpen = (id: number) => this.props.onOpen(id);
 
@@ -37,6 +37,7 @@ export default class PotriesList extends Component<PotriesListProps> {
             id={i}
             onOpen={this.handleOpen}
             open={!!mobile ? false : i === openID}
+            mobile={mobile}
           />
         ))}
       </List>

@@ -4,7 +4,7 @@ import PoetryData from "../utils/poetry-data";
 import ImgCard from "./img-card";
 import PoetriesList from "./potries-list";
 import MediaQuery from "react-responsive";
-import Slides from "./slides";
+// import Slides from "./slides";
 
 interface ResultProps {
   imgURL: string;
@@ -29,11 +29,11 @@ export default class Result extends Component<ResultProps, ResultState> {
 
   render() {
     const { openID } = this.state;
-    const { imgURL, poetries } = this.props;
+    const { imgURL } = this.props;
 
     return (
       <React.Fragment>
-        <MediaQuery minWidth={1224}>
+        <MediaQuery minWidth={1325}>
           <div style={{ position: "fixed", top: "25vh", left: "12vw" }}>
             <ImgCard
               imgURL={imgURL}

@@ -9,6 +9,7 @@ import {
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import PoetryData from "../utils/poetry-data";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 
 export interface PoetryProps {
   poetryData: PoetryData;
@@ -18,6 +19,7 @@ export interface PoetryProps {
   id: number;
   onOpen: (id: number) => void;
   open: boolean;
+  mobile?: boolean;
 }
 
 interface PoetryState {
@@ -71,7 +73,7 @@ export default class Poetry extends Component<PoetryProps, PoetryState> {
 
   render() {
     const { title, author } = this.props.poetryData;
-    const { divider, id, open } = this.props;
+    const { divider, id, open, mobile } = this.props;
 
     const highLight = this.getHighlight().map((v, i) => (
       <Typography variant="body1" key={i}>
@@ -91,7 +93,13 @@ export default class Poetry extends Component<PoetryProps, PoetryState> {
             primary={highLight}
             secondary={`《${title}》 ` + author}
           />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          {!!mobile ? (
+            <ArrowForwardIosRoundedIcon className="mx-4" />
+          ) : open ? (
+            <ExpandLess />
+          ) : (
+            <ExpandMore />
+          )}
         </ListItemButton>
         <Collapse in={open}>{this.completePoetry()}</Collapse>
       </React.Fragment>
