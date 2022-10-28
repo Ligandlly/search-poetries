@@ -54,10 +54,14 @@ export default class ImgCard extends Component<ImgCardProps> {
           }
           sx={{ height: imgHeight }}
         />
-        <CardContent sx={{ height: !!textHeight ? textHeight : "4rem" }}>
+        <CardContent sx={{ height: !!textHeight ? textHeight : "55px" }}>
           {!!highlight ? (
             highlight
-              .map((v) => <Typography variant="body1">{v}</Typography>)
+              .map((v) => (
+                <Typography variant="body1" fontSize="16px">
+                  {v}
+                </Typography>
+              ))
               .slice(0, 2)
           ) : (
             <>

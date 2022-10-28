@@ -39,8 +39,8 @@ export default class Result extends Component<ResultProps, ResultState> {
               imgURL={imgURL}
               poetries={fakePoetry}
               openID={openID}
-              cardSize="30rem"
-              imgHeight="23rem"
+              cardSize="480px"
+              imgHeight="368px  "
             />
           </div>
 
@@ -57,7 +57,7 @@ export default class Result extends Component<ResultProps, ResultState> {
 
           <div style={{ clear: "both" }}></div>
         </MediaQuery>
-        <MediaQuery maxWidth={1224}>
+        <MediaQuery maxWidth={1325}>
           <div>
             {/* <ImgCard
               imgURL={imgURL}

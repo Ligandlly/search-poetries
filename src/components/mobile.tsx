@@ -33,8 +33,8 @@ export default function Mobile(props: Props) {
           imgURL={imgURL}
           poetries={poetries}
           openID={openID}
-          cardSize="90vw"
-          imgHeight="68vw"
+          cardSize="min(90vw, 500px)"
+          imgHeight="min(68vw, 378px)"
         />
       </div>
     );
